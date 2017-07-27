@@ -1,0 +1,1 @@
+docker run --name fprinter -v F:/Users/paul/fingerprint/fingerprintjs2:/var/www:rw -v F:/Users/paul/fingerprint/conf:/var/nginx/conf:ro -p 80:80 -P -d nginx
