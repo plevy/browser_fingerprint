@@ -22,7 +22,7 @@ http://localhost
 ```
 and
 ```
-http://localhost/clientjs-master
+http://localhost/clientjs
 ```
 
 It is setup for port 80 right now so it should just work without a port specified.
@@ -45,5 +45,9 @@ Use docker start [CONTAINER ID] to start the webserver after the initial image h
 ```
 docker start 5e08960feda0
 ```
-
-
+# To Rebuild Image:
+Use docker stop if the container is running and docker rm to remove the container
+```
+docker stop 5e08960feda0
+docker rm 5e08960feda0
+```
