@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<script type="text/javascript">
+	var host = "clientjs.org";
+	if ((host == window.location.host) && (window.location.protocol != "https:"))
+		window.location.protocol = "https";
+	</script>
+
+
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="canonical" href="https://clientjs.org">
+	<title>ClientJS</title>
+
+	<!-- Bootstrap core CSS -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
+
+	<!-- Documentation extras -->
+	<link href="css/docs.css" rel="stylesheet">
+	<link href="css/pygments-manni.css" rel="stylesheet">
+	<!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+  		<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  		<script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  		<![endif]-->
+
+  		<!-- Favicons -->
+  		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  		<link rel="shortcut icon" href="img/favicon.png">
+
+  	</head>
+  	<body>
+  		<a class="sr-only" href="#content">Skip to main content</a>
+
+  		<!-- Docs page layout -->
+  		<div class="bs-header" id="content">
+  			<div class="container">
+  				<h1>ClientJS</h1>
+  				<p>Device information and digital fingerprinting written in pure JavaScript.</p>
+  			</div>
+  		</div>
+
+  		<div class="container text-center">
+  				<div class="row">
+  					<h2 style="color:#4682B4;">Your Fingerprint: <span id="title-fingerprint" style="color:#333;"></span></small></h2>
+  				</div>
+  		</div>
+
+  		<div class="container bs-docs-container">
+  			<div class="row">
+  				<div class="col-md-3">
+  					<div class="bs-sidebar hidden-print" role="complementary">
+  						<ul class="nav bs-sidenav">
+  							<li>
+  								<a href="#overview">Overview</a>
+  								<ul class="nav">
+  									<li><a href="#overview-what-is-this">What Is This</a></li>
+  									<li><a href="#overview-why-use-it">Why Use It</a></li>
+  									<li><a href="#overview-how-to-install-it">How To Install It</a></li>
+  									<li><a href="#overview-how-to-use-it">How To Use It</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#ClientJS">ClientJS Methods</a>
+  								<ul class="nav">
+  									<li><a href="#ClientJS-new">new ClientJS()</a></li>
+  									<li><a href="#ClientJS-getSoftwareVersion">getSoftwareVersion()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Fingerprints">Fingerprint Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Fingerprint-getFingerprint">getFingerprint()</a></li>
+										<li><a href="#Fingerprint-getCustomFingerprint">getCustomFingerprint()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#UserAgent">User Agent Methods</a>
+  								<ul class="nav">
+  									<li><a href="#UserAgent-getUserAgent">getUserAgent()</a></li>
+  									<li><a href="#UserAgent-getUserAgentLowerCase">getUserAgentLowerCase()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Browser">Browser Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Browser-getBrowser">getBrowser()</a></li>
+  									<li><a href="#Browser-getBrowserVersion">getBrowserVersion()</a></li>
+  									<li><a href="#Browser-getBrowserMajorVersion">getBrowserMajorVersion()</a></li>
+  									<li><a href="#Browser-isIE">isIE()</a></li>
+  									<li><a href="#Browser-isChrome">isChrome()</a></li>
+  									<li><a href="#Browser-isFirefox">isFirefox()</a></li>
+  									<li><a href="#Browser-isSafari">isSafari()</a></li>
+  									<li><a href="#Browser-isOpera">isOpera()</a></li>
+										<li><a href="#Browser-isMobileSafari">isMobileSafari()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Engine">Engine Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Engine-getEngine">getEngine()</a></li>
+  									<li><a href="#Engine-getEngineVersion">getEngineVersion()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#OS">OS Methods</a>
+  								<ul class="nav">
+  									<li><a href="#OS-getOS">getOS()</a></li>
+  									<li><a href="#OS-getOSVersion">getOSVersion()</a></li>
+  									<li><a href="#OS-isWindows">isWindows()</a></li>
+  									<li><a href="#OS-isMac">isMac()</a></li>
+  									<li><a href="#OS-isLinux">isLinux()</a></li>
+  									<li><a href="#OS-isUbuntu">isUbuntu()</a></li>
+  									<li><a href="#OS-isSolaris">isSolaris()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Device">Device Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Device-getDevice">getDevice()</a></li>
+  									<li><a href="#Device-getDeviceType">getDeviceType()</a></li>
+  									<li><a href="#Device-getDeviceVendor">getDeviceVendor()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#CPU">CPU Methods</a>
+  								<ul class="nav">
+  									<li><a href="#CPU-getCPU">getCPU()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Mobile">Mobile Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Mobile-isMobile">isMobile()</a></li>
+  									<li><a href="#Mobile-isMobileMajor">isMobileMajor()</a></li>
+  									<li><a href="#Mobile-isMobileAndroid">isMobileAndroid()</a></li>
+  									<li><a href="#Mobile-isMobileOpera">isMobileOpera()</a></li>
+  									<li><a href="#Mobile-isMobileWindows">isMobileWindows()</a></li>
+  									<li><a href="#Mobile-isMobileBlackBerry">isMobileBlackBerry()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#iOS">iOS Methods</a>
+  								<ul class="nav">
+  									<li><a href="#iOS-isMobileIOS">isMobileIOS()</a></li>
+  									<li><a href="#iOS-isIphone">isIphone()</a></li>
+  									<li><a href="#iOS-isIpad">isIpad()</a></li>
+  									<li><a href="#iOS-isIpod">isIpod()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Screen">Screen Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Screen-getScreenPrint">getScreenPrint()</a></li>
+  									<li><a href="#Screen-getColorDepth">getColorDepth()</a></li>
+  									<li><a href="#Screen-getCurrentResolution">getCurrentResolution()</a></li>
+  									<li><a href="#Screen-getAvailableResolution">getAvailableResolution()</a></li>
+  									<li><a href="#Screen-getDeviceXDPI">getDeviceXDPI()</a></li>
+  									<li><a href="#Screen-getDeviceYDPI">getDeviceYDPI()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Plugin">Plugin Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Plugin-getPlugins">getPlugins()</a></li>
+  									<li><a href="#Plugin-isJava">isJava()</a></li>
+  									<li><a href="#Plugin-getJavaVersion">getJavaVersion()</a></li>
+  									<li><a href="#Plugin-isFlash">isFlash()</a></li>
+  									<li><a href="#Plugin-getFlashVersion">getFlashVersion()</a></li>
+  									<li><a href="#Plugin-isSilverlight">isSilverlight()</a></li>
+  									<li><a href="#Plugin-getSilverlightVersion">getSilverlightVersion()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#MimeType">Mime Type Methods</a>
+  								<ul class="nav">
+  									<li><a href="#MimeType-getMimeTypes">getMimeTypes()</a></li>
+  									<li><a href="#MimeType-isMimeTypes">isMimeTypes()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Font">Font Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Font-isFont">isFont(font)</a></li>
+  									<li><a href="#Font-getFonts">getFonts()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Storage">Storage Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Storage-isLocalStorage">isLocalStorage()</a></li>
+  									<li><a href="#Storage-isSessionStorage">isSessionStorage()</a></li>
+  									<li><a href="#Storage-isCookie">isCookie()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Time">Time Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Time-getTimeZone">getTimeZone()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Language">Language Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Language-getLanguage">getLanguage()</a></li>
+  									<li><a href="#Language-getSystemLanguage">getSystemLanguage()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#Canvas">Canvas Methods</a>
+  								<ul class="nav">
+  									<li><a href="#Canvas-isCanvas">isCanvas()</a></li>
+  									<li><a href="#Canvas-getCanvasPrint">getCanvasPrint()</a></li>
+  								</ul>
+  							</li>
+  							<li>
+  								<a href="#additional-info">Additional Info</a>
+  								<ul class="nav">
+  									<li><a href="#additional-info-closure-compiled">Closure Compiled</a></li>
+  									<li><a href="#additional-info-dependencies">Dependencies</a></li>
+  									<li><a href="#additional-info-issues">Known Issues</a></li>
+  									<li><a href="#additional-info-licence">Licence</a></li>
+  								</ul>
+  							</li>
+  						</ul>
+  					</div>
+  				</div>
+  				<div class="col-md-9" role="main">
+
+					<!-- OVERVIEW -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="overview">Overview <a href="http://beta.drone.io/jackspirou/clientjs"><img src="http://beta.drone.io/api/badges/jackspirou/clientjs/status.svg" /></a></h1>
+  						</div>
+  						<p class="lead">ClientJS is simple.  It is for finding device information and generating digital fingerprints.</p>
+  						<br />
+
+  						<h3 id="overview-what-is-this">What Is This?</h3>
+  						<p class="lead">ClientJS makes use of many different native JavaScript functions, methods, and opensource resources to find information about the client.</p>
+							<p class="lead">ClientJS easily lets you create a client object to find out as much useful information as you can about what devices are connecting to your site and your product.  You can ask specific questions like, “does the user have an iOS or Android device?” or better yet, “is the user's device an iPad?”  ClientJS even lets you produce browser/device fingerprint IDs.</p>
+  						<br />
+
+  						<h3 id="overview-why-use-it">Why Use It?</h3>
+  						<p class="lead">Gathering information from different browsers and devices makes it difficult to handle cross compatibility.  We take care of the hard stuff so that you can easily get the client info you need.</p>
+  						<br />
+							<p class="lead">ClientJS attempts to solve the problem of making client data more easily available. Good data is necessary for good analytics that help you make better business and tech choices.  Do you have good informative data about how your users connect to your site?  Do you know their average screen size?  ClientJS can help you collect data and make good decisions for your application and business.</p>
+  						<br />
+
+  						<h3 id="overview-how-to-install-it">How To Install It</h3>
+  						<p class="lead">1) Download. 2) Include. 3) Have Fun!</p>
+
+							<h4>Step 1. Download</h4>
+							<div class="bs-callout bs-callout-info">
+								<h4>npm</h4>
+								<p>ClientJS is available via npm.</p>
+								<br />
+								<p><code>npm install clientjs</code></p>
+							</div>
+
+							<div class="bs-callout bs-callout-info">
+								<h4>bower</h4>
+								<p>ClientJS is available as a bower package.</p>
+								<br />
+								<p><code>bower install clientjs</code></p>
+							</div>
+
+							<div class="bs-callout bs-callout-info">
+								<h4>Github</h4>
+								<p>ClientJS is hosted on github.</p>
+								<br />
+								<p>Just visit our github page at <a href="https://github.com/jackspirou/clientjs">https://github.com/jackspirou/clientjs</a> and download the minified production JavaScript!</p>
+							</div>
+							<br />
+
+							<h4>Step 2. Include</h4>
+  						<p class="lead">Just include the <strong>'client.min.js'</strong> library in the beginning of your project and you can start testing for mobile devices, installed fonts, calculate browser/device fingerprints, and more!</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html lang="en"&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+	<span class="nt"><span class="s">&lt;script src="client.min.js"&gt;&lt;/script&gt;</strong></span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">...</span>
+  						</code></pre></div>
+
+							<br />
+							<h4>Step 3. Use it!</h4>
+							<br />
+
+  						<h3 id="overview-how-to-use-it">How To Use It</h3>
+  						<p class="lead">After you have ClientJS installed, using it is simple!  The first thing you need to do is create a client object and then start calling some methods.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+	<span class="nt">var client = <span class="s">new ClientJS();</span></span>
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<p class="lead">See how easy that was!  Now how about we execute some methods?  Let's see if we have a mobile device and if so is it an android or iOS device?  If it is not, lets check if Java is installed and its version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">if( <span class="s">client.isMobile()</span> ) { // Check For Mobile Device</span>
+
+		<span class="nt">if( <span class="s">client.isMobileAndroid()</span> ) { // Check For Android</span>
+			<span class="nt">alert('We Got Us Some Android!');</span>
+
+		<span class="nt">}else if( <span class="s">client.isMobileIOS()</span> ){ // Check For iOS</span>
+			<span class="nt">alert('We Got Us Some Apple iOS!');</span>
+
+		<span class="nt">}else{</span>
+			<span class="nt">alert('Unknown Mobile Device...');</span>
+		<span class="nt">}</span>
+	<span class="nt">}else{</span>
+		<span class="nt">if( <span class="s">client.isJava()</span> ) { // Check If Java Is Installed</span>
+  			<span class="nt">alert('Java ' + <span class="s">client.getJavaVersion()</span> ); // Get Java Version</span>
+
+		<span class="nt">}else{</span>
+			<span class="nt">alert('No Java Installed...');</span>
+		<span class="nt">}</span>
+	<span class="nt">}</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<p class="lead">We can can get much more info with ClientJS, but for now lets just calculate our users device/browser fingerprint.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var fingerprint = <span class="s">client.getFingerprint();</span> // Calculate Device/Browser Fingerprint</span>
+
+	<span class="nt">alert( fingerprint );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<p class="lead">Again, these are just a few examples of what you can do with ClientJS.  Read about more features below:</p>
+  					</div>
+
+  					<!-- ClientJS METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="ClientJS">ClientJS Methods</h1>
+  						</div>
+  						<p class="lead">You need these ClientJS methods to properly utilizing ClientJS.</p>
+  						<br />
+
+  						<h3 id="ClientJS-new">new ClientJS()</h3>
+  						<p class="lead">ClientJS constructor which initiates the data and returns the client object.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<br />
+
+  						<h3 id="ClientJS-getSoftwareVersion">getSoftwareVersion</h3>
+  						<p class="lead">Get Software Version.  Return a string containing this software version number.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var softwareVersion = <span class="s">client.getSoftwareVersion();</span> // Get ClientJS Software Version</span>
+
+	<span class="nt">console.log( softwareVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getSoftwareVersion"></p>
+  						</div>
+  					</div>
+
+  					<!-- Fingerprint METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Fingerprints">Fingerprint Methods</h1>
+  						</div>
+  						<p class="lead">A device fingerprint or machine fingerprint or browser fingerprint is information collected about a remote computing device for the purpose of identification. Fingerprints can fully or partially identify individual users or devices even when cookies are turned off.</p>
+  						<br />
+
+  						<h3 id="Fingerprint-getFingerprint">getFingerprint()</h3>
+  						<p class="lead">Get Fingerprint.  Return a 32-bit integer representing the browsers fingerprint.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var fingerprint = <span class="s">client.getFingerprint();</span> // Get Client's Fingerprint</span>
+
+	<span class="nt">console.log( fingerprint );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getFingerprint"></p>
+  						</div>
+							<br />
+
+  						<h3 id="Fingerprint-getCustomFingerprint">getCustomFingerprint()</h3>
+  						<p class="lead">Get Custom Fingerprint.  Take a string of datapoints and return a 32-bit integer representing the browsers fingerprint.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+	<span class="nt">var ua = <span class="s">client.getBrowserData().ua;</span></span>
+	<span class="nt">var canvasPrint = <span class="s">client.getCanvasPrint();</span></span>
+
+	<span class="nt">var fingerprint = <span class="s">client.getCustomFingerprint(ua, canvasPrint);</span>
+
+	<span class="nt">console.log( fingerprint );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getCustomFingerprint"></p>
+  						</div>
+  					</div>
+
+					<!-- USER AGENT METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="UserAgent">UserAgent Methods</h1>
+  						</div>
+  						<p class="lead">A user agent is any software that retrieves and presents Web content for end users or is implemented using Web technologies.</p>
+  						<br />
+
+  						<h3 id="UserAgent-getUserAgent">getUserAgent()</h3>
+  						<p class="lead">Get User Agent.  Return a string containing unparsed user agent.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var userAgent = <span class="s">client.getUserAgent();</span> // Get User Agent String</span>
+
+	<span class="nt">console.log( userAgent );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getUserAgent"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="UserAgent-getUserAgentLowerCase">getUserAgentLowerCase()</h3>
+  						<p class="lead">Get User Agent Lower Case.  Return a lowercase string containing the user agent.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var userAgentLowerCase = <span class="s">client.getUserAgentLowerCase();</span> // Get User Agent String</span>
+
+	<span class="nt">console.log( userAgentLowerCase );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getUserAgentLowerCase"></p>
+  						</div>
+  					</div>
+
+  					<!-- BROWSER METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Browser">Browser Methods</h1>
+  						</div>
+  						<p class="lead">Find out the name and version of the client browser.</p>
+  						<br />
+
+  						<h3 id="Browser-getBrowser">getBrowser()</h3>
+  						<p class="lead">Get Browser.  Return a string containing the browser name.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var browser = <span class="s">client.getBrowser();</span> // Get Browser</span>
+
+	<span class="nt">console.log( browser );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getBrowser"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-getBrowserVersion">getBrowserVersion()</h3>
+  						<p class="lead">Get Browser Version.  Return a string containing the browser version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var browserVersion = <span class="s">client.getBrowserVersion();</span> // Get Browser Version</span>
+
+	<span class="nt">console.log( browserVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getBrowserVersion"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-getBrowserMajorVersion">getBrowserMajorVersion()</h3>
+  						<p class="lead">Get Browser Major Version.  Return a string containing the major browser version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var browserMajorVersion = <span class="s">client.getBrowserMajorVersion();</span> // Get Browser's Major Version</span>
+
+	<span class="nt">console.log( browserMajorVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getBrowserMajorVersion"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-isIE">isIE()</h3>
+  						<p class="lead">Is IE.  Check if the browser is IE.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isIE = <span class="s">client.isIE();</span> // Check For IE</span>
+
+	<span class="nt">console.log( isIE );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isIE"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-isChrome">isChrome()</h3>
+  						<p class="lead">Is Chrome.  Check if the browser is Chrome.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isChrome = <span class="s">client.isChrome();</span> // Check For Chrome</span>
+
+	<span class="nt">console.log( isChrome );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isChrome"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-isFirefox">isFirefox()</h3>
+  						<p class="lead">Is Firefox.  Check if the browser is Firefox.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isFirefox = <span class="s">client.isFirefox();</span> // Check For Firefox</span>
+
+	<span class="nt">console.log( isFirefox );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isFirefox"></p>
+  						</div>
+  						<br />
+
+						<h3 id="Browser-isSafari">isSafari()</h3>
+  						<p class="lead">Is Safari.  Check if the browser is Safari.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isSafari = <span class="s">client.isSafari();</span> // Check For Safari</span>
+
+	<span class="nt">console.log( isSafari );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isSafari"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Browser-isOpera">isOpera()</h3>
+  						<p class="lead">Is Opera.  Check if the browser is Opera.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isOpera = <span class="s">client.isOpera();</span> // Check For Opera</span>
+
+	<span class="nt">console.log( isOpera );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isOpera"></p>
+  						</div>
+							<br />
+
+							<h3 id="Browser-isMobileSafari">isMobileSafari()</h3>
+  						<p class="lead">Is MobileSafari.  Check if the browser is Mobile Safari.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileSafari = <span class="s">client.isMobileSafari();</span> // Check For Mobile Safari</span>
+
+	<span class="nt">console.log( isMobileSafari );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileSafari"></p>
+  						</div>
+  					</div>
+
+  					<!-- ENGINE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Engine">Engine Methods</h1>
+  						</div>
+  						<p class="lead">A web browser engine, is a software component that takes marked up content and formatting information and displays the formatted content on the screen.</p>
+  						<br />
+
+  						<h3 id="Engine-getEngine">getEngine()</h3>
+  						<p class="lead">Get Engine.  Return a string containing the browser engine.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var engine = <span class="s">client.getEngine();</span> // Get Engine</span>
+
+	<span class="nt">console.log( engine );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getEngine"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Engine-getEngineVersion">getEngineVersion()</h3>
+  						<p class="lead">Get Engine Version.  Return a string containing the browser engine version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var engineVersion = <span class="s">client.getEngineVersion();</span> // Get Engine Version</span>
+
+	<span class="nt">console.log( engineVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getEngineVersion"></p>
+  						</div>
+  					</div>
+
+  					<!-- OS METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="OS">OS Methods</h1>
+  						</div>
+  						<p class="lead">An operating system (OS) is a collection of software that manages computer hardware resources and provides common services for computer programs.</p>
+  						<br />
+
+  						<h3 id="OS-getOS">getOS()</h3>
+  						<p class="lead">Get OS.  Return a string containing the OS.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var OS = <span class="s">client.getOS();</span> // Get OS Version</span>
+
+	<span class="nt">console.log( OS );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getOS"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-getOSVersion">getOSVersion()</h3>
+  						<p class="lead">Get OS Version.  Return a string containing the OS Version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var osVersion = <span class="s">client.getOSVersion();</span> // Get OS Version</span>
+
+	<span class="nt">console.log( osVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getOSVersion"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-isWindows">isWindows()</h3>
+  						<p class="lead">Is Windows.  Check if the OS is Windows.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isWindows = <span class="s">client.isWindows();</span> // Check For Windows</span>
+
+	<span class="nt">console.log( isWindows );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isWindows"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-isMac">isMac()</h3>
+  						<p class="lead">Is Mac.  Check if the OS is Mac.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMac = <span class="s">client.isMac();</span> // Check For Mac</span>
+
+	<span class="nt">console.log( isMac );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMac"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-isLinux">isLinux()</h3>
+  						<p class="lead">Is Linux.  Check if the OS is Linux.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isLinux = <span class="s">client.isLinux();</span> // Check For Linux</span>
+
+	<span class="nt">console.log( isLinux );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isLinux"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-isUbuntu">isUbuntu()</h3>
+  						<p class="lead">Is Ubuntu.  Check if the OS is Ubuntu.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isUbuntu = <span class="s">client.isUbuntu();</span> // Check For Ubuntu</span>
+
+	<span class="nt">console.log( isUbuntu );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isUbuntu"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="OS-isSolaris">isSolaris()</h3>
+  						<p class="lead">Is Solaris.  Check if the OS is Solaris.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isSolaris = <span class="s">client.isSolaris();</span> // Check For Solaris</span>
+
+	<span class="nt">console.log( isSolaris );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isSolaris"></p>
+  						</div>
+  					</div>
+
+  					<!-- DEVICE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Device">Device Methods</h1>
+  						</div>
+  						<p class="lead">By Device we mean the user's personal computer.  A personal computer (PC) is a general-purpose computer, whose size, capabilities, and original sale price makes it useful for individuals, and which could be a desktop, mobile, tablet, or laptop.</p>
+  						<br />
+
+  						<h3 id="Device-getDevice">getDevice()</h3>
+  						<p class="lead">Get Device.  Return a string containing the device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var device = <span class="s">client.getDevice();</span> // Get Device</span>
+
+	<span class="nt">console.log( device );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getDevice"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Device-getDeviceType">getDeviceType()</h3>
+  						<p class="lead">Get Device Type.  Return a string containing the device type.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var deviceType = <span class="s">client.getDeviceType();</span> // Get Device Type</span>
+
+	<span class="nt">console.log( deviceType );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getDeviceType"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Device-getDeviceVendor">getDeviceVendor()</h3>
+  						<p class="lead">Get Device Vendor.  Return a string containing the device vendor.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var deviceVendor = <span class="s">client.getDeviceVendor();</span> // Get Device Vendor</span>
+
+	<span class="nt">console.log( deviceVendor );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getDeviceVendor"></p>
+  						</div>
+  					</div>
+
+  					<!-- CPU METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="CPU">CPU Methods</h1>
+  						</div>
+  						<p class="lead">A central processing unit (CPU), also referred to as a central processor unit, is the hardware within a computer that carries out the instructions of a computer program by performing the basic arithmetical, logical, and input/output operations of the system.</p>
+  						<br />
+
+  						<h3 id="CPU-getCPU">getCPU()</h3>
+  						<p class="lead">Get CPU.  Return a string containing the CPU architecture.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var CPU = <span class="s">client.getCPU();</span> // Get CPU Architecture</span>
+
+	<span class="nt">console.log( CPU );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getCPU"></p>
+  						</div>
+  					</div>
+
+  					<!-- MOBILE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Mobile">Mobile Methods</h1>
+  						</div>
+  						<p class="lead">A mobile browser, also called a microbrowser, minibrowser, or wireless internet browser (WIB), is a web browser designed for use on a mobile device such as a mobile phone or PDA. Mobile browsers are optimized so as to display Web content most effectively for small screens on portable devices.</p>
+  						<br />
+
+  						<h3 id="Mobile-isMobile">isMobile()</h3>
+  						<p class="lead">Is Mobile.  Check if the browser is on a mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobile = <span class="s">client.isMobile();</span> // Check For Mobile</span>
+
+	<span class="nt">console.log( isMobile );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobile"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Mobile-isMobileMajor">isMobileMajor()</h3>
+  						<p class="lead">Is Mobile Major.  Check if the browser is on a major mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileMajor = <span class="s">client.isMobileMajor();</span> // Check For Mobile Major</span>
+
+	<span class="nt">console.log( isMobileMajor );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileMajor"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Mobile-isMobileAndroid">isMobileAndroid()</h3>
+  						<p class="lead">Is Mobile Android.  Check if the browser is on an android mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileAndroid = <span class="s">client.isMobileAndroid();</span> // Check For Mobile Android</span>
+
+	<span class="nt">console.log( isMobileAndroid );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileAndroid"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Mobile-isMobileOpera">isMobileOpera()</h3>
+  						<p class="lead">Is Mobile Opera.  Check if the browser is on an opera mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileOpera = <span class="s">client.isMobileOpera();</span> // Check For Mobile Opera</span>
+
+	<span class="nt">console.log( isMobileOpera );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileOpera"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Mobile-isMobileWindows">isMobileWindows()</h3>
+  						<p class="lead">Is Mobile Windows.  Check if the browser is on a windows mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileWindows = <span class="s">client.isMobileWindows();</span> // Check For Mobile Windows</span>
+
+	<span class="nt">console.log( isMobileWindows );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileWindows"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Mobile-isMobileBlackBerry">isMobileBlackBerry()</h3>
+  						<p class="lead">Is Mobile BlackBerry.  Check if the browser is on a blackberry mobile device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileBlackBerry = <span class="s">client.isMobileBlackBerry();</span> // Check For Mobile Blackberry</span>
+
+	<span class="nt">console.log( isMobileBlackBerry );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileBlackBerry"></p>
+  						</div>
+  					</div>
+
+  					<!-- IOS METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="iOS">iOS Methods</h1>
+  						</div>
+  						<p class="lead">iOS (previously iPhone OS) is a mobile operating system developed and distributed by Apple Inc.</p>
+  						<br />
+
+  						<h3 id="iOS-isMobileIOS">isMobileIOS()</h3>
+  						<p class="lead">Is Mobile iOS.  Check if the browser is on an Apple iOS device.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMobileIOS = <span class="s">client.isMobileIOS();</span> // Check For Mobile iOS</span>
+
+	<span class="nt">console.log( isMobileIOS );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMobileIOS"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="iOS-isIphone">isIphone()</h3>
+  						<p class="lead">Is Iphone.  Check if the browser is on an Apple iPhone.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isIphone = <span class="s">client.isIphone();</span> // Check For iPhone</span>
+
+	<span class="nt">console.log( isIphone );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isIphone"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="iOS-isIpad">isIpad()</h3>
+  						<p class="lead">Is Ipad.  Check if the browser is on an Apple iPad.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isIpad = <span class="s">client.isIpad();</span> // Check For iPad</span>
+
+	<span class="nt">console.log( isIpad );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isIpad"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="iOS-isIpod">isIpod()</h3>
+  						<p class="lead">Is Ipod.  Check if the browser is on an Apple iPod.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isIpod = <span class="s">client.isIpod();</span> // Check For iPod</span>
+
+	<span class="nt">console.log( isIpod );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isIpod"></p>
+  						</div>
+  					</div>
+
+  					<!-- SCREEN METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Screen">Screen Methods</h1>
+  						</div>
+  						<p class="lead">An electronic visual display for computers. The screen monitor comprises the display device, circuitry and an enclosure.</p>
+  						<br />
+
+  						<h3 id="Screen-getScreenPrint">getScreenPrint()</h3>
+  						<p class="lead">Get Screen Print.  Return a string containing screen information.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var screenPrint = <span class="s">client.getScreenPrint();</span> // Get Screen Print</span>
+
+	<span class="nt">console.log( screenPrint );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getScreenPrint"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Screen-getColorDepth">getColorDepth()</h3>
+  						<p class="lead">Get Color Depth.  Return a string containing the color depth.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var colorDepth = <span class="s">client.getColorDepth();</span> // Get Color Depth</span>
+
+	<span class="nt">console.log( colorDepth );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getColorDepth"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Screen-getCurrentResolution">getCurrentResolution()</h3>
+  						<p class="lead">Get Current Resolution.  Return a string containing the current resolution.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var currentResolution = <span class="s">client.getCurrentResolution();</span> // Get Current Resolution</span>
+
+	<span class="nt">console.log( currentResolution );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getCurrentResolution"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Screen-getAvailableResolution">getAvailableResolution()</h3>
+  						<p class="lead">Get Available Resolution.  Return a string containing the available resolution.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var availableResolution = <span class="s">client.getAvailableResolution();</span> // Get Available Resolution</span>
+
+	<span class="nt">console.log( availableResolution );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getAvailableResolution"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Screen-getDeviceXDPI">getDeviceXDPI()</h3>
+  						<p class="lead">Get Device XPDI.  Return a string containing the device XPDI.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var deviceXDPI = <span class="s">client.getDeviceXDPI();</span> // Get Device XDPI</span>
+
+	<span class="nt">console.log( deviceXDPI );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getDeviceXDPI"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Screen-getDeviceYDPI">getDeviceYDPI()</h3>
+  						<p class="lead">Get Device YDPI.  Return a string containing the device YDPI.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var deviceYDPI = <span class="s">client.getDeviceYDPI();</span> // Get Device YDPI</span>
+
+	<span class="nt">console.log( deviceYDPI );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getDeviceYDPI"></p>
+  						</div>
+  					</div>
+
+  					<!-- PLUGIN METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Plugin">Plugin Methods</h1>
+  						</div>
+  						<p class="lead">In computing, a plug-in (or plugin, extension) is a software component that adds a specific feature to an existing software application. When an application supports plug-ins, it enables customization.</p>
+  						<br />
+
+  						<h3 id="Plugin-getPlugins">getPlugins()</h3>
+  						<p class="lead">Get Plugins.  Return a string containing a list of installed plugins.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var plugins = <span class="s">client.getPlugins();</span> // Get Plugins</span>
+
+	<span class="nt">console.log( plugins );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getPlugins"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-isJava">isJava()</h3>
+  						<p class="lead">Is Java.  Check if Java is installed.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isJava = <span class="s">client.isJava();</span> // Check For Java</span>
+
+	<span class="nt">console.log( isJava );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isJava"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-getJavaVersion">getJavaVersion()</h3>
+  						<p class="lead">Get Java Version.  Return a string containing the Java Version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var javaVersion = <span class="s">client.getJavaVersion();</span> // Get Java Version</span>
+
+	<span class="nt">console.log( javaVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getJavaVersion"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-isFlash">isFlash()</h3>
+  						<p class="lead">Is Flash.  Check if Flash is installed.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isFlash = <span class="s">client.isFlash();</span> // Check For Flash</span>
+
+	<span class="nt">console.log( isFlash );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isFlash"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-getFlashVersion">getFlashVersion()</h3>
+  						<p class="lead">Get Flash Version.  Return a string containing the Flash Version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var flashVersion = <span class="s">client.getFlashVersion();</span> // GET Flash Version</span>
+
+	<span class="nt">console.log( flashVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getFlashVersion"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-isSilverlight">isSilverlight()</h3>
+  						<p class="lead">Is Silverlight.  Check if Silverlight is installed.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isSilverlight = <span class="s">client.isSilverlight();</span> // Check For Silverlight</span>
+
+	<span class="nt">console.log( isSilverlight );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isSilverlight"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Plugin-getSilverlightVersion">getSilverlightVersion()</h3>
+  						<p class="lead">Get Silverlight Version.  Return a string containing the Silverlight Version.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var silverlightVersion = <span class="s">client.getSilverlightVersion();</span> // GET Silverlight Version</span>
+
+	<span class="nt">console.log( silverlightVersion );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getSilverlightVersion"></p>
+  						</div>
+  					</div>
+
+  					<!-- MIME TYPE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="MimeType">Mime Type Methods</h1>
+  						</div>
+  						<p class="lead">An Internet media type is a standard identifier used on the Internet to indicate the type of data that a file contains.  The identifiers were originally defined in RFC 2046, and were called MIME types because they referred to the non-ASCII parts of email messages that were composed using the MIME (Multipurpose Internet Mail Extensions) specification. They are also sometimes referred to as Content-types.</p>
+  						<br />
+
+  						<h3 id="MimeType-isMimeTypes">isMimeTypes()</h3>
+  						<p class="lead">Is Mime Types.  Check if mime types are installed.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isMimeTypes = <span class="s">client.isMimeTypes();</span> // Check For Mime Types</span>
+
+	<span class="nt">console.log( isMimeTypes );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isMimeTypes"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="MimeType-getMimeTypes">getMimeTypes()</h3>
+  						<p class="lead">Get Mime Types.  Return a string containing a list of installed mime types.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var mimeTypes = <span class="s">client.getMimeTypes();</span> // Get Mime Types</span>
+
+	<span class="nt">console.log( mimeTypes );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getMimeTypes"></p>
+  						</div>
+  					</div>
+
+  					<!-- FONT METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Font">Font Methods</h1>
+  						</div>
+  						<p class="lead">A computer font (or font) is an electronic data file containing a set of glyphs, characters, or symbols such as dingbats. Although the term font first referred to a set of metal type sorts in one style and size, since the 1990s it is generally used to refer to a scalable set of digital shapes that may be printed at many different sizes.</p>
+  						<br />
+
+  						<h3 id="Font-isFont">isFont(font)</h3>
+  						<p class="lead">Is Font.  Check if a font is installed.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var font = <span class="s">"Times New Roman";</span> // Set Font String</span>
+
+	<span class="nt">var isFont = <span class="s">client.isFont(font);</span> // Check For A Font</span>
+
+	<span class="nt">console.log( isFont );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isFont"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Font-getFonts">getFonts()</h3>
+  						<p class="lead">Get Fonts.  Return a string containing a list of installed fonts.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var fonts = <span class="s">client.getFonts();</span> // Get Fonts</span>
+
+	<span class="nt">console.log( fonts );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getFonts"></p>
+  						</div>
+
+
+  					</div>
+
+  					<!-- STORAGE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Storage">Storage Methods</h1>
+  						</div>
+  						<p class="lead">Web storage supports persistent data storage, similar to cookies but with a greatly enhanced capacity and no information stored in the HTTP request header. There are two main web storage types: local storage and session storage, behaving similarly to persistent cookies and session cookies respectively.</p>
+  						<br />
+
+  						<h3 id="Storage-isLocalStorage">isLocalStorage()</h3>
+  						<p class="lead">Is Local Storage.  Check if local storage is avaliable.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isLocalStorage = <span class="s">client.isLocalStorage();</span> // Check For Local Storage</span>
+
+	<span class="nt">console.log( isLocalStorage );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isLocalStorage"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Storage-isSessionStorage">isSessionStorage()</h3>
+  						<p class="lead">Is Session Storage.  Check if session storage is avaliable.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isSessionStorage = <span class="s">client.isSessionStorage();</span> // Check For Session Storage</span>
+
+	<span class="nt">console.log( isSessionStorage );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isSessionStorage"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Storage-isCookie">isCookie()</h3>
+  						<p class="lead">Is Cookie.  Check if cookies are avaliable.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isCookie = <span class="s">client.isCookie();</span> // Check For Cookies</span>
+
+	<span class="nt">console.log( isCookie );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isCookie"></p>
+  						</div>
+  					</div>
+
+  					<!-- TIME METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Time">Time Methods</h1>
+  						</div>
+  						<p class="lead">Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them. A time zone is a region on Earth that has a uniform standard time for legal, commercial, and social purposes.</p>
+  						<br />
+
+  						<h3 id="Time-getTimeZone">getTimeZone()</h3>
+  						<p class="lead">Get Time Zone.  Return a lowercase string containing the time zone.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var timeZone = <span class="s">client.getTimeZone();</span> // Get Time Zone</span>
+
+	<span class="nt">console.log( timeZone );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getTimeZone"></p>
+  						</div>
+  					</div>
+
+  					<!-- LANGUAGE METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Language">Language Methods</h1>
+  						</div>
+  						<p class="lead">Language preferences of client browsers.</p>
+  						<br />
+
+  						<h3 id="Language-getLanguage">getLanguage()</h3>
+  						<p class="lead">Get Language.  Return a lowercase string containing the user language.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var language = <span class="s">client.getLanguage();</span> // Get User Language</span>
+
+	<span class="nt">console.log( language );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getLanguage"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Language-getSystemLanguage">getSystemLanguage()</h3>
+  						<p class="lead">Get SystemLanguage.  Return a lowercase string containing the system language.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var systemLanguage = <span class="s">client.SystemLanguage();</span> // Get System Language</span>
+
+	<span class="nt">console.log( systemLanguage );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getSystemLanguage"></p>
+  						</div>
+  					</div>
+
+  					<!-- CANVAS METHDOS -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="Canvas">Canvas Methods</h1>
+  						</div>
+  						<p class="lead">The HTML5 &lt;canvas&gt; element is used to draw graphics, on the fly, via scripting (usually JavaScript).</p>
+  						<br />
+
+						<h3 id="Canvas-isCanvas">isCanvas()</h3>
+  						<p class="lead">Is Canvas.  Check if the canvas element is available.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var isCanvas = <span class="s">client.isCanvas();</span> // Check For The Canvas Element</span>
+
+	<span class="nt">console.log( isCanvas );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="isCanvas"></p>
+  						</div>
+  						<br />
+
+  						<h3 id="Canvas-getCanvasPrint">getCanvasPrint()</h3>
+  						<p class="lead">Get Canvas Print.  Return a string containing canvas image information.</p>
+  						<div class="highlight"><pre><code class="html">
+<span class="nt">&lt;script&gt;</span>
+
+	<span class="nt">var client = <span class="s">new ClientJS();</span> // Create A New Client Object</span>
+
+	<span class="nt">var canvasPrint = <span class="s">client.getCanvasPrint();</span> // Get Canvas Print</span>
+
+	<span class="nt">console.log( canvasPrint );</span>
+
+<span class="nt">&lt;/script&gt;</span>
+  						</code></pre></div>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Your Result:</h4>
+  							<p id="getCanvasPrint" style="word-wrap:break-word;"></p>
+  						</div>
+  					</div>
+
+  					<!-- ADDITIONAL INFO -->
+
+  					<div class="bs-docs-section">
+  						<div class="page-header">
+  							<h1 id="additional-info">Additional Info</h1>
+  						</div>
+  						<p class="lead">Additional details about the compiler we use, ClientJS dependencies, known issues, and our software licence.</p>
+  						<br />
+
+  						<h3 id="additional-info-closure-compiled">Closure Compiled</h3>
+  						<p class="lead">The 'client.min.js' file is created by running the source code through the <a href="https://developers.google.com/closure/compiler/">Google Closure Compiler</a>.</p>
+  						<p>Instead of compiling from a source language to machine code, the <strong>Google Closure Compiler</strong> compiles from JavaScript to better JavaScript.  It parses your JavaScript, analyzes it, removes dead code and rewrites and minimizes what's left.  It also checks syntax, variable references, and types, and warns about common JavaScript pitfalls.</p>
+  						<br />
+
+  						<h3 id="additional-info-dependencies">Dependencies</h3>
+  						<p class="lead">ClientJS is completely written in JavaScript.  It has no Adobe Flash, Java App, or Silverlight dependencies, but it can tell you if those browser plugins are installed and their version numbers!</p>
+  						<p>ClientJS is also written in pure or native JavaScript, so that it does not rely on jQuery, MooTools, underscorejs or any other JavaScript library.  This does not mean ClientJS has no dependencies at all.  ClientJS does rely on multiple other open source pure JavaScript libraries, projects, and snippets.  Don't worry though!  All of that dependent code is hidden inside the ClientJS minified code, ‘client.min.js’ so you don’t have to include more silly stuff.  The file ‘client.min.js’ has everything you need to execute any ClientJS method or calculation! :-)</p>
+  						<p>Dependencies are listed below:</p>
+  						<ul>
+  							<li>ua-parser.js</li>
+  							<li>fontdetect.js</li>
+  							<li>swfobject.js</li>
+  							<li>murmurhash3.js</li>
+  						</ul>
+  						<p>ClientJS is built upon and owes credit to the great work below:</p>
+  						<ul>
+  							<li><a href="https://github.com/Valve/fingerprintjs">github.com/Valve/fingerprintjs</a></li>
+  							<li><a href="http://darkwavetech.com/device_fingerprint.html">darkwavetech.com/device_fingerprint.html</a></li>
+  							<li><a href="http://www.detectmobilebrowsers.com">detectmobilebrowsers.com</a></li>
+  						</ul>
+  						<br />
+
+  						<h3 id="additional-info-issues">Known Issues</h3>
+  						<p class="lead">There are quite a few known issues at the moment.  We are working on trying to solve them instead of listing them as this project is so young.  Please help us out by checking us out at github!</p>
+  						<div class="bs-callout bs-callout-info">
+  							<h4>Contribute To The Code On Github</h4>
+  							<p>Just visit our github page at <a href="https://github.com/jackspirou/clientjs">https://github.com/jackspirou/clientjs</a>!</p>
+  						</div>
+  						<br />
+
+  						<h3 id="additional-info-licence">Licence</h3>
+
+
+<div class="container" style="height: 300px;"></div>
+  					</div>
+
+  				</div>
+
+  			</div>
+
+  		</div>
+
+    <!-- Footer -->
+    <footer class="bs-footer" role="contentinfo">
+    	<div class="container">
+
+    	</div>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- Latest google hosted JQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+
+    <script src="//platform.twitter.com/widgets.js"></script>
+    <script src="js/holder.js"></script>
+
+    <script src="js/application.js"></script>
+
+    <script src="js/client.min.js"></script>
+    <script>
+
+    	var client = new ClientJS();
+    	var fingerprint = client.getFingerprint();
+
+    	$('#getSoftwareVersion').text(client.getSoftwareVersion());
+
+    	$('#title-fingerprint').text(fingerprint);
+    	$('#getFingerprint').text(fingerprint);
+			var ua = client.getBrowserData().ua;
+			var canvasprint = client.getCanvasPrint();
+			$('#getCustomFingerprint').text(client.getCustomFingerprint(ua, canvasprint));
+
+    	$('#getUserAgent').text(client.getUserAgent());
+    	$('#getUserAgentLowerCase').text(client.getUserAgentLowerCase());
+
+			$('#getBrowser').text(client.getBrowser());
+    	$('#getBrowserVersion').text(client.getBrowserVersion());
+    	$('#getBrowserMajorVersion').text(client.getBrowserMajorVersion());
+    	$('#isIE').text(client.isIE());
+    	$('#isChrome').text(client.isChrome());
+    	$('#isFirefox').text(client.isFirefox());
+    	$('#isSafari').text(client.isSafari());
+    	$('#isOpera').text(client.isOpera());
+			$('#isMobileSafari').text(client.isMobileSafari());
+
+    	$('#getEngine').text(client.getEngine());
+    	$('#getEngineVersion').text(client.getEngineVersion());
+
+			$('#getOS').text(client.getOS());
+			$('#getOSVersion').text(client.getOSVersion());
+    	$('#isWindows').text(client.isWindows());
+    	$('#isMac').text(client.isMac());
+    	$('#isLinux').text(client.isLinux());
+    	$('#isUbuntu').text(client.isUbuntu());
+    	$('#isSolaris').text(client.isSolaris());
+
+    	$('#getDevice').text(client.getDevice());
+			$('#getDeviceType').text(client.getDeviceType());
+    	$('#getDeviceVendor').text(client.getDeviceVendor());
+
+    	$('#getCPU').text(client.getCPU());
+
+    	$('#isMobile').text(client.isMobile());
+    	$('#isMobileMajor').text(client.isMobileMajor());
+    	$('#isMobileAndroid').text(client.isMobileAndroid());
+    	$('#isMobileOpera').text(client.isMobileOpera());
+    	$('#isMobileWindows').text(client.isMobileWindows());
+    	$('#isMobileBlackBerry').text(client.isMobileBlackBerry());
+
+    	$('#isMobileIOS').text(client.isMobileIOS());
+    	$('#isIphone').text(client.isIphone());
+    	$('#isIpad').text(client.isIpad());
+    	$('#isIpod').text(client.isIpod());
+
+    	$('#getScreenPrint').text(client.getScreenPrint());
+    	$('#getColorDepth').text(client.getColorDepth());
+    	$('#getCurrentResolution').text(client.getCurrentResolution());
+    	$('#getAvailableResolution').text(client.getAvailableResolution());
+    	$('#getDeviceXDPI').text(client.getDeviceXDPI());
+    	$('#getDeviceYDPI').text(client.getDeviceYDPI());
+
+    	$('#getPlugins').text(client.getPlugins());
+    	$('#isJava').text(client.isJava());
+    	$('#getJavaVersion').text(client.getJavaVersion());
+    	$('#isFlash').text(client.isFlash());
+    	$('#getFlashVersion').text(client.getFlashVersion());
+    	$('#isSilverlight').text(client.isSilverlight());
+    	$('#getSilverlightVersion').text(client.getSilverlightVersion());
+
+    	$('#isMimeTypes').text(client.isMimeTypes());
+    	$('#getMimeTypes').text(client.getMimeTypes());
+
+    	$('#isFont').text(client.isFont("Times New Roman"));
+    	$('#getFonts').text(client.getFonts());
+
+    	$('#isLocalStorage').text(client.isLocalStorage());
+    	$('#isSessionStorage').text(client.isSessionStorage());
+    	$('#isCookie').text(client.isCookie());
+
+    	$('#getTimeZone').text(client.getTimeZone());
+
+    	$('#getLanguage').text(client.getLanguage());
+    	$('#getSystemLanguage').text(client.getSystemLanguage());
+
+    	$('#isCanvas').text(client.isCanvas());
+
+    	$('#getCanvasPrint').text(client.getCanvasPrint());
+
+    </script>
+
+</body>
+</html>

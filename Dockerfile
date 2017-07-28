@@ -14,9 +14,9 @@ RUN git clone https://github.com/Valve/fingerprintjs2.git
 RUN mkdir /var/www/
 RUN cp -r ./fingerprintjs2/* /var/www/
 
-RUN wget https://dl.dropboxusercontent.com/u/2093312/clientjs-master.zip
-RUN unzip clientjs-master.zip
-RUN cp -r clientjs-master /var/www/
+RUN wget https://dl.dropboxusercontent.com/u/2093312/clientjs.zip
+RUN unzip clientjs.zip
+RUN cp -r clientjs /var/www/
 
 EXPOSE 80
 
