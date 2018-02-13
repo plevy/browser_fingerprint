@@ -1,23 +1,21 @@
-FROM ubuntu
-RUN apt-get update
-RUN apt-get install -y git ack-grep vim curl wget tmux build-essential python-software-properties unzip
+FROM python:2.7
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get -y install nginx
+MAINTAINER William Budington <bill@eff.org>
 
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-RUN mkdir /etc/nginx/ssl
-ADD default /etc/nginx/sites-available/default
+EXPOSE 5000
 
-RUN git clone https://github.com/Valve/fingerprintjs2.git
-RUN mkdir /var/www/
-RUN cp -r ./fingerprintjs2/* /var/www/
+WORKDIR /opt
+ADD requirements.txt ./
+RUN pip install -r requirements.txt
 
-RUN wget https://dl.dropboxusercontent.com/u/2093312/clientjs.zip
-RUN unzip clientjs.zip
-RUN cp -r clientjs /var/www/
+ADD config_example.py env_config.py db.py entropy_helper.py main.py util.py ./
+ADD bower_components ./bower_components/
+ADD fingerprint ./fingerprint/
+ADD tracking ./tracking/
+ADD static ./static/ 
+ADD templates ./templates/
+ADD docker ./docker/
 
-EXPOSE 80
-
-CMD ["nginx"]
+ENV PUBLIC True
+ENTRYPOINT ["/opt/docker/entrypoint.sh"]
+CMD ["python", "main.py"]
