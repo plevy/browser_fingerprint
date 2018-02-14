@@ -1,53 +1,11 @@
 # browser_fingerprint
 # Browser Fingerprint Tests
 
-This is a quick combination of Valve's FingerprintJS2 and ClientJS browser fingerprint code.
+Using the Panopticlick-Python project as a starting point, make modifications for program.  Concept is to preserve what is setup in
+Panopticlick but add latest fingerprint library and collect results without requiring MySQL.  Add other fingerprinting collections such
+as netstat.
 
-# To Build:
-First, make sure Docker is installed and running.
-On Windows, you will need to git clone to a folder in your user folder such as C:\Users\paul\
-
-``` 
-cd C:\Users\paul\
-git clone https://github.com/plevy/browser_fingerprint.git
-.\nginx.bat
-```
-
-That will build a simple ubuntu base image and install nginx for the web server.  After nginx is installed, it will install the latest fingerprintjs2 from github.com/Valve/fingerprintjs2 and clientjs with a simple test page.
-
-# To Test:
-After Docker is done building and executing the image, simply open a web browser to localhost
-```
-http://localhost
-```
-and
-```
-http://localhost/clientjs
-```
-
-It is setup for port 80 right now so it should just work without a port specified.
-
-# To Stop Webserver
-```
-docker ps
-````
-will show something like this:
-```
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                NAMES
-5e08960feda0        nginx-example       "nginx"             6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp   fprinter2
-```
-Use docker stop [CONTAINER ID] to stop the webserver
-```
-docker stop 5e08960feda0
-```
-# To Run After Image is Already Built:
-Use docker start [CONTAINER ID] to start the webserver after the initial image has been built.
-```
-docker start 5e08960feda0
-```
-# To Rebuild Image:
-Use docker stop if the container is running and docker rm to remove the container
-```
-docker stop 5e08960feda0
-docker rm 5e08960feda0
-```
+Initial Version:
+1) Use the Panaopticlick infrastructure as it provides both stand alone(no MySQL stand alone setup yet) and docker deployment.  Flask app
+   framework and server.
+2) Brought in latest fingerprint2js library and flask app routing http://localhost:5000/new_fingerprint
