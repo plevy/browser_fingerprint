@@ -1,8 +1,9 @@
 // Send browsers that support JavaScript to the AJAX version of the
 // test
 
-var aat_link = '/tracker?aat=1';
-var no_aat_link = '/tracker';
+//var aat_link = '/tracker?aat=1';
+var aat_link = '/new_fingerprint';
+var no_aat_link = '/new_fingerprint';
 
 $(document).ready(function(){
   $('#trackerlink').attr('href', aat_link);
